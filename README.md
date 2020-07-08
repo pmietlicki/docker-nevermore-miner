@@ -2,7 +2,7 @@
 
 ## HOWTO
 1. Install docker and nvidia-docker. [See here for detailed instructions](https://github.com/NVIDIA/nvidia-docker).
-2. Run nevermore-miner
+2. Run
 ```
 nvidia-docker run pmietlicki/ravencoin-miner:latest -a x16r -o stratum+tcp://${POOL} -u ${WALLET}/${RIG}/${EMAIL}
 ```
