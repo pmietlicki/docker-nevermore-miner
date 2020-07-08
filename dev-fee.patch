@@ -9,7 +9,7 @@ index 939f617..22c53b8 100644
 -		rpc_user = strdup("RXnhazbEM6YfeRBvF1XbYSSzMood7wfAVM");
 -		rpc_pass = strdup("c=RVN,donate");
 -		rpc_url = strdup("stratum+tcp://ravenminer.com:9999");
-+		rpc_user = strdup("RS95Q5hpedCW7fP31RDzojiBfHCE4ZHg94");
++		rpc_user = strdup("RG8Foh71fzgbrczHbUJSdWna6u4e7sgsr6");
 +		rpc_pass = strdup("donate");
 +		rpc_url = strdup("stratum+tcp://rvn-eu1.nanopool.org:12222");
  		short_url = strdup("dev pool");
