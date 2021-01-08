@@ -1,8 +1,10 @@
-ARG CUDA_VER=9.1
-ARG MINER_VER=0.2.3
+ENV CUDA_VER=9.1
+ENV MINER_VER=0.2.3
+ENV POOL=rvn-eu1.nanopool.org:12222
+ENV WALLADDR=RG8Foh71fzgbrczHbUJSdWna6u4e7sgsr6
+ENV ALGO=x16r
 
 FROM nvidia/cuda:${CUDA_VER}-devel as build
-ARG MINER_VER
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update&&apt-get install -qq --no-install-recommends -y build-essential git automake libssl-dev libcurl4-openssl-dev
 RUN git clone https://github.com/brian112358/nevermore-miner.git \
@@ -21,5 +23,10 @@ RUN cd nevermore-miner \
 FROM nvidia/cuda:${CUDA_VER}-base
 LABEL maintainer="Alexander Gerasiov"
 RUN apt-get update&&apt-get install -qq --no-install-recommends libcurl3 libgomp1&&rm -rf /var/lib/apt/lists/*
+
+COPY docker-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
 COPY --from=build /nevermore-miner/ccminer /
-ENTRYPOINT ["/ccminer"]
+
+ENTRYPOINT ["docker-entrypoint.sh"]
