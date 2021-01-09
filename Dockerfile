@@ -2,11 +2,7 @@ ENV CUDA_VER=9.1
 ARG CUDA_VER=$CUDA_VER
 ENV MINER_VER=0.2.3
 ARG MINER_VER=$MINER_VER
-ENV POOL=rvn-eu1.nanopool.org:12222
-ENV POOL_USER=RG8Foh71fzgbrczHbUJSdWna6u4e7sgsr6
-ENV POOL_PW=Rancher
-ENV POOL_URL=stratum+tcp://ravenminer.com:9999
-ENV ALGO=x16r
+
 
 FROM nvidia/cuda:${CUDA_VER}-devel as build
 ARG MINER_VER
@@ -26,6 +22,11 @@ RUN cd nevermore-miner \
 	&& make -j $(nproc)
 
 FROM nvidia/cuda:${CUDA_VER}-base
+ENV POOL=rvn-eu1.nanopool.org:12222
+ENV POOL_USER=RG8Foh71fzgbrczHbUJSdWna6u4e7sgsr6
+ENV POOL_PW=Rancher
+ENV POOL_URL=stratum+tcp://ravenminer.com:9999
+ENV ALGO=x16r
 LABEL maintainer="Alexander Gerasiov"
 RUN apt-get update&&apt-get install -qq --no-install-recommends libcurl3 libgomp1&&rm -rf /var/lib/apt/lists/*
 
