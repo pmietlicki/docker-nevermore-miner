@@ -25,7 +25,6 @@ ENV POOL_USER=RG8Foh71fzgbrczHbUJSdWna6u4e7sgsr6
 ENV POOL_PW=Rancher
 ENV POOL_URL=stratum+tcp://ravenminer.com:9999
 ENV ALGO=x16r
-LABEL maintainer="Alexander Gerasiov"
 RUN apt-get update&&apt-get install -qq --no-install-recommends libcurl3 libgomp1&&rm -rf /var/lib/apt/lists/*
 
 COPY docker-entrypoint.sh /usr/local/bin/
